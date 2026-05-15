@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="../week.css" />
     <style>
       :root { --week-colour: #BBDEFB; }
+
+      /* ── 3 code screenshots in a row ── */
+      .code-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+      }
+
+      .code-grid img {
+        width: 100%;
+        display: block;
+        outline: 1px solid rgba(31,26,26,0.35);
+      }
     </style>
   </head>
   <body>
@@ -18,7 +31,7 @@
 
     <div class="week-content">
 
-      <!-- Section 1: First iframe -->
+      <!-- Section 1: Portrait iframe -->
       <div class="week-section" id="section-1">
         <iframe
           class="project-frame"
@@ -28,14 +41,23 @@
         ></iframe>
       </div>
 
-      <!-- Section 2: Second iframe -->
-     <iframe
-        class="project-frame"
-        src="webcam.html"
-        title="ASCII Webcam"
-        scrolling="no"
-        style="height: 70vh;"
+      <!-- Section 2: ASCII Webcam iframe -->
+      <div class="week-section" id="section-2">
+        <iframe
+          class="project-frame"
+          src="webcam.html"
+          title="ASCII Webcam"
+          scrolling="no"
+          style="height: 70vh;"
         ></iframe>
+      </div>
+
+      <!-- Section 3: Code screenshots -->
+      <div class="week-section" id="section-3">
+      <img src="portraitp5js1.png" alt="Portrait p5.js code screenshot 1" style="width: 100%; display: block; outline: 1px solid rgba(31,26,26,0.35); margin-bottom: 16px;" />
+      <img src="portraitp5js2.png" alt="Portrait p5.js code screenshot 2" style="width: 100%; display: block; outline: 1px solid rgba(31,26,26,0.35); margin-bottom: 16px;" />
+      <img src="portraitp5js3.png" alt="Portrait p5.js code screenshot 3" style="width: 100%; display: block; outline: 1px solid rgba(31,26,26,0.35);" />
+    </div>
 
     </div>
 
@@ -60,6 +82,11 @@
           id: 'section-2',
           title: 'Ascii Webcam Filter',
           desc: 'I love the Ascii aesthetic in artworks (It is quite the new trend). So now you can see yourself in live Ascii art!'
+        },
+        {
+          id: 'section-3',
+          title: 'p5.js Code',
+          desc: 'A look at the code behind the portrait sketch, written in p5.js Processing.'
         },
       ];
     </script>
