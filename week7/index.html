@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 7 — Mai's Workbook</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #F8BBD0; }
+
+      /* ── Section 1: two images side by side ── */
+      .split-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      /* ── Image containers ── */
+      .img-wrap {
+        position: relative;
+        width: 100%;
+      }
+
+      .img-wrap img {
+        width: 100%;
+        display: block;
+        outline: 1px solid rgba(31,26,26,0.35);
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .img-label {
+        font-size: 0.7rem;
+        font-style: italic;
+        letter-spacing: 0.08em;
+        color: #1F1A1A;
+        opacity: 0.45;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      /* ── Touch sensor: buzzer hotspot ── */
+      .buzzer-wrap {
+        cursor: url('pointer.png'), crosshair;
+      }
+
+      .hotspot {
+        position: absolute;
+        /* Buzzer sits bottom-left of the image — adjust % to fine tune */
+        top: 64%;
+        left: 35%;
+        width: 22%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: rgba(255,0,0,0.2); 
+      }
+
+      .section-video {
+        width: 40%;
+        display: block;
+        margin: 0 auto;
+        outline: 1px solid rgba(31,26,26,0.35);
+        background: #000;
+        }   
+
+      /* Ripple ring that plays on hover */
+      .hotspot::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(31,26,26,0);
+        transition: border-color 0.15s, transform 0.15s;
+      }
+
+      .hotspot.active::after {
+        border-color: rgba(31,26,26,0.4);
+        transform: scale(1.15);
+      }
+
+      /* ── Section 2 & 3: local video ── */
+      .section-video {
+        width: 100%;
+        display: block;
+        outline: 1px solid rgba(31,26,26,0.35);
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 7</h1>
+    <p class="week-sub">fun fact 4: i work VERY disorganised and my desk is always in a mess :[</p>
+
+    <div class="week-content">
+
+      <!-- Section 1: Two sensor images side by side -->
+      <div class="week-section" id="section-1">
+        <div class="split-layout">
+
+          <!-- Left: ultrasonic sensor (static) -->
+          <div class="img-wrap">
+            <img src="sensor.jpg" alt="Ultrasonic sensor" />
+            <p class="img-label">ultrasonic sensor</p>
+          </div>
+
+          <!-- Right: touch/buzzer sensor (interactive) -->
+          <div class="img-wrap buzzer-wrap" id="buzzer-wrap">
+            <img src="buzzer.jpg" alt="Touch buzzer sensor" />
+            <!-- Hotspot over the buzzer component -->
+            <div class="hotspot" id="hotspot"></div>
+            <p class="img-label">hover over the buzzer ↑</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 2: First local video -->
+      <div class="week-section" id="section-2">
+        <video
+          class="section-video"
+          src="walk.mov"
+          id="video-1"
+          muted
+          playsinline
+          loop
+          controls
+        ></video>
+      </div>
+
+      <!-- Section 3: Second local video -->
+      <div class="week-section" id="section-3">
+        <video
+          class="section-video"
+          src="fish.mov"
+          id="video-2"
+          muted
+          playsinline
+          loop
+          controls
+        ></video>
+      </div>
+
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 7 thumb" />
+      </div>
+    </footer>
+
+    <script>
+      window.SECTIONS = [
+        {
+          id: 'section-1',
+          title: 'Arduino Sensors',
+          desc: 'Two Arduino sensors explored side by side — an ultrasonic distance sensor on the left, and a touch buzzer on the right. Try interacting with the touch sensor yourself!'
+        },
+        {
+          id: 'section-2',
+          title: 'The Walk Test',
+          desc: 'Using the ultrasonic sensor to detect obstacles while walking, kinda failed as the delay in detection was too slow.'
+        },
+        {
+          id: 'section-3',
+          title: 'Fish Tank Activity',
+          desc: 'Finished the workshop with a fish tank activity, but I think our fish has a little bit of an attitude today.'
+        },
+      ];
+
+      /* ── Beep sound via Web Audio API (no file needed) ── */
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      function beep() {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 0.15);
+      }
+
+      /* ── Hotspot hover ── */
+      const hotspot = document.getElementById('hotspot');
+      let beepTimer = null;
+
+      hotspot.addEventListener('mouseenter', () => {
+        hotspot.classList.add('active');
+        beep();
+        // repeat beep while hovering
+        beepTimer = setInterval(beep, 200);
+      });
+
+      hotspot.addEventListener('mouseleave', () => {
+        hotspot.classList.remove('active');
+        clearInterval(beepTimer);
+      });
+
+      /* ── Autoplay videos on scroll ── */
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const vid = entry.target;
+          if (entry.isIntersecting) {
+            vid.play();
+          } else {
+            vid.pause();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      document.querySelectorAll('.section-video').forEach(v => videoObserver.observe(v));
+    </script>
+    <script src="../week.js"></script>
+
+  </body>
+</html>

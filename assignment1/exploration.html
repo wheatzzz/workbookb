@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exploration</title>
+    <link rel="stylesheet" href="exploration.css">
+</head>
+
+<body>
+
+    <img src="exploration_icon.gif" alt="Exploration icon" draggable="false" onclick="location.href='index.html'">
+
+    <h1>Exploration</h1>
+    <p class="intro">findings & inspirational content → scroll to explore</p>
+   
+
+    <div class="scroll-track" id="scroll-track">
+
+        <div class="card">
+            <span class="card-tag">daily art</span>
+            <h2>Miniature Calendar</h2>
+            <span class="meta">Tatsuya Tanaka · 2011 – present</span>
+            <p>A daily art project reimagining everyday objects from a miniature perspective. Since 2011, Tanaka has updateded this wepage every single day with a new creation.</p>
+            <a href="https://miniature-calendar.com/" target="_blank">visit site ↗</a>
+
+            <div class="image-wrapper">
+                <img src="exploration1.png" alt="Miniature Calendar" class="card-image" draggable="false">
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-tag">interactive portfolio</span>
+            <h2>Mr. Panda's Psychologically Safe Portfolio</h2>
+            <span class="meta">Andrew Woan · 2025</span>
+            <p>A hand-drawn papercraft portfolio fighting back against toxicity in the creative industry. Inspired the scroll-to-navigate interaction for my final workbook.</p>
+            <a href="https://www.mr-pandas-psychologically-safe-portfolio.com/" target="_blank">visit site ↗</a>
+
+            <div class="image-wrapper">
+                <img src="exploration2.png" alt="Portfolio" class="card-image" draggable="false">
+            </div>
+        </div>
+
+
+        <div class="card">
+            <span class="card-tag">interactive storytelling</span>
+            <h2>Curiosity is Life</h2>
+            <span class="meta">KOKUYO × mount inc. · 2025</span>
+            <p>A special site celebrating KOKUYO's 120th anniversary through a modern, interactive media storytelling through a pop-up book aesthetic. Built to launch their first ever corporate message.</p>
+            <a href="https://www.kokuyo.com/en/special/curiosity-is-life/" target="_blank">visit site ↗</a>
+
+            <div class="image-wrapper">
+                <img src="exploration3.png" alt="Curiosity is Life" class="card-image" draggable="false">
+            </div>
+        </div>
+        
+
+        <div class="card">
+            <span class="card-tag">interactive portfolio</span>
+            <h2>knoxstation</h2>
+            <span class="meta">Gia · 2025</span>
+            <p>A collection of interactive elements curated by Gia under the name of knowstation. Designed in a y2k style, elements are well incorporated and visually appealing, winning the "cool" ribbon in a contest held by Ballonea.</p>
+            <a href="https://knoxstation.neocities.org/#/" target="_blank">visit site ↗</a>
+
+            <div class="image-wrapper">
+                <img src="exploration4.png" alt="Portfolio" class="card-image" draggable="false">
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-tag">AI Robots</span>
+            <h2>Bringing Olaf to Life</h2>
+            <span class="meta">Disney · 2026</span>
+            <p>Walt Disney's exploration and development of technological innovations that would service storytelling. The AI Olaf usesreinforcement learning to learn character behaviors expressed through facical expressions and body language and responding to live interactions.</p>
+            <a href="https://www.youtube.com/watch?v=d-WdUYdOdHY" target="_blank">view video ↗</a>
+
+            <div class="image-wrapper">
+                <img src="exploration5.jpg" alt="AI Olaf" class="card-image" draggable="false">
+            </div>
+        </div>
+        
+    </div>
+    
+
+ <script>
+        const track = document.getElementById('scroll-track');
+
+        track.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            track.scrollLeft += e.deltaY;
+        }
+        });
+</script>
+
+</body>
+</html>

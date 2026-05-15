@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 9 — Mai's Workbook</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #B2EBF2; }
+
+      /* ── Lock page to viewport, no scroll ── */
+      html, body {
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .week-content {
+        padding-top: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── PDF reader wrap ── */
+      .pdf-reader {
+        position: relative;
+        height: calc(100vh - 120px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 10px;
+      }
+
+      /* ── Canvas where PDF page renders ── */
+      #pdf-canvas {
+        display: block;
+        max-width: 42vw;
+        max-height: calc(100vh - 280px);
+        outline: 1px solid rgba(31,26,26,0.15);
+        background: #FFF1EC;
+        cursor: url('pointer.png'), pointer;
+        user-select: none;
+        filter: none;
+      }
+
+      /* ── Page counter + hint ── */
+      .pdf-controls {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .pdf-counter {
+        font-size: 0.72rem;
+        font-style: italic;
+        letter-spacing: 0.1em;
+        color: #1F1A1A;
+        opacity: 0.45;
+      }
+
+      .pdf-hint {
+        font-size: 0.68rem;
+        font-style: italic;
+        letter-spacing: 0.08em;
+        color: #1F1A1A;
+        opacity: 0.3;
+        display: block;
+        position: static;
+      }
+
+      .pdf-btn {
+        font-family: 'Georgia', serif;
+        font-size: 0.78rem;
+        font-style: italic;
+        letter-spacing: 0.1em;
+        color: #1F1A1A;
+        background: transparent;
+        border: 1px solid rgba(31,26,26,0.3);
+        padding: 6px 20px;
+        cursor: pointer;
+        transition: background 0.2s, opacity 0.2s;
+      }
+
+      .pdf-btn:hover:not(:disabled) {
+        background: rgba(31,26,26,0.06);
+      }
+
+      .pdf-btn:disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 9</h1>
+    <p class="week-sub">fun fact 6: I used to have very long hair that goes to my waist</p>
+
+    <div class="week-content">
+      <div class="pdf-reader">
+
+        <canvas id="pdf-canvas"></canvas>
+
+        <div class="pdf-controls">
+          <button class="pdf-btn" id="btn-prev">← prev</button>
+          <span class="pdf-counter" id="pdf-counter">page 1 of —</span>
+          <button class="pdf-btn" id="btn-next">next →</button>
+        </div>
+
+        <p class="pdf-hint">click the page or use the arrows to turn</p>
+
+      </div>
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 9 thumb" />
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      const PDF_URL = 'mypawsona.pdf';
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      const canvas  = document.getElementById('pdf-canvas');
+      const ctx     = canvas.getContext('2d');
+      const counter = document.getElementById('pdf-counter');
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+
+      let pdfDoc    = null;
+      let pageNum   = 1;
+      let rendering = false;
+
+      function renderPage(num) {
+        if (rendering) return;
+        rendering = true;
+
+        pdfDoc.getPage(num).then(page => {
+          const viewport = page.getViewport({ scale: 1 });
+          const maxW = window.innerWidth * 0.42;
+          const maxH = window.innerHeight - 280;
+          const scale = Math.min(maxW / viewport.width, maxH / viewport.height);
+          const scaled = page.getViewport({ scale });
+
+          canvas.width  = scaled.width;
+          canvas.height = scaled.height;
+
+          page.render({ canvasContext: ctx, viewport: scaled }).promise.then(() => {
+            rendering = false;
+            counter.textContent = `page ${num} of ${pdfDoc.numPages}`;
+            btnPrev.disabled = num <= 1;
+            btnNext.disabled = num >= pdfDoc.numPages;
+          });
+        });
+      }
+
+      function prevPage() {
+        if (pageNum <= 1) return;
+        pageNum--;
+        renderPage(pageNum);
+      }
+
+      function nextPage() {
+        if (pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        renderPage(pageNum);
+      }
+
+      canvas.addEventListener('click', nextPage);
+      btnPrev.addEventListener('click', prevPage);
+      btnNext.addEventListener('click', nextPage);
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextPage();
+        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevPage();
+      });
+
+      pdfjsLib.getDocument(PDF_URL).promise.then(doc => {
+        pdfDoc = doc;
+        renderPage(pageNum);
+      });
+
+      document.getElementById('section-title').textContent = 'My Pawsona';
+      document.getElementById('section-desc').textContent  = 'A short description of what this document is.';
+    </script>
+
+  </body>
+</html>

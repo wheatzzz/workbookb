@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+
+
+:root {
+  --bg:        #1e1e1e;
+  --sidebar:   #252526;
+  --border:    #3c3c3c;
+  --blue:      #569cd6;
+  --green:     #4ec9b0;
+  --orange:    #ce9178;
+  --yellow:    #dcdcaa;
+  --comment:   #6a9955;
+  --text:      #d4d4d4;
+  --muted:     #858585;
+  --highlight: #264f78;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Fira Code', monospace;
+  color: var(--text);
+  padding: 2rem 3rem 3rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+body > img[alt="Week 1 Icon"] {
+  position: fixed;
+  top: 1rem;
+  left: 2rem;
+  width: 70px;
+  height: 70px;
+  filter: invert(80%);
+  padding: 6px;
+  cursor: pointer;
+  z-index: 100;
+  
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--yellow);
+  margin: 3.5rem 0 0.4rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--blue);
+  margin: 2rem 0 0.8rem;
+}
+
+p {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  margin: 0.8rem 0;
+}
+
+.img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.img-container img[alt="Bubble Wrap"] {
+  opacity: 1;
+}
+
+.img-container img[alt="Infinity Popper"] {
+  opacity: 0;
+}
+
+.img-container:hover img[alt="Bubble Wrap"] {
+  opacity: 0;
+}
+
+.img-container:hover img[alt="Infinity Popper"] {
+  opacity: 1;
+}
+
+.section {
+  margin-top: 2.5rem;
+  padding: 1.2rem 1.5rem;
+  background-color: var(--sidebar);
+  border-left: 3px solid var(--blue);
+}
+
+.section-crazy8 {
+  margin-top: 2.5rem;
+  padding: 1.2rem 1.5rem;
+  background-color: var(--sidebar);
+  border-left: 3px solid var(--orange);
+}
+
+.crazy8-thumb {
+  width: 100%;
+  max-width: 320px;
+  margin: 0.8rem 0;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  display: block;
+  transition: border-color 0.2s;
+}
+
+.crazy8-thumb:hover {
+  border-color: var(--orange);
+}
+
+.crazy8-caption {
+  font-size: 0.8rem;
+  color: var(--comment);
+}
+
+.case-study-img {
+  width: 100%;
+  max-width: 500px;
+  margin: 0.8rem 0;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+#crazy8-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 999;
+  cursor: pointer;
+}
+
+#crazy8-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#crazy8-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#crazy8-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: var(--sidebar);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+#crazy8-close:hover {
+  background: var(--highlight);
+}

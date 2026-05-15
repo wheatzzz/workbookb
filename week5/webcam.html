@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCII Webcam</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow: hidden; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
+</head>
+<body>
+<script>
+const ASCII = '@#W$9876543210?!abc;:+=-,._ ';
+const DOT_RES = 6;
+
+let capture;
+let pg;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  pixelDensity(1);
+
+  pg = createGraphics(windowWidth, windowHeight);
+  pg.pixelDensity(1);
+  pg.textAlign(CENTER, CENTER);
+  pg.textFont('monospace');
+  pg.textSize(DOT_RES);
+  pg.noStroke();
+  pg.background(0);
+
+  capture = createCapture(VIDEO, () => {
+    capture.size(floor(width / DOT_RES), floor(height / DOT_RES));
+    capture.hide();
+  });
+
+  textAlign(CENTER, CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+  let cols = capture.width;
+  let rows = capture.height;
+
+  capture.loadPixels();
+
+  pg.background(255);
+  pg.textSize(DOT_RES);
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+
+      // Mirror horizontally
+      let srcX = cols - 1 - x;
+      let idx = (y * cols + srcX) * 4;
+
+      let r = capture.pixels[idx];
+      let g = capture.pixels[idx + 1];
+      let b = capture.pixels[idx + 2];
+
+      // Boost contrast: shift midpoint and stretch range
+      let bright = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+      bright = constrain((bright - 0.3) * 3.2, 0, 1);
+
+      let cx = x * DOT_RES + DOT_RES / 2;
+      let cy = y * DOT_RES + DOT_RES / 2;
+
+      let charIdx = floor(bright * (ASCII.length - 1));
+      let lum = floor(bright * 255);
+      pg.fill(lum);
+      pg.text(ASCII[charIdx], cx, cy);
+    }
+  }
+
+  image(pg, 0, 0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 5</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #BBDEFB; }
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 5</h1>
+    <p class="week-sub">Fun Fact 2: I love to sleep and I sleep A LOT hehehehe</p>
+
+    <div class="week-content">
+
+      <!-- Section 1: First iframe -->
+      <div class="week-section" id="section-1">
+        <iframe
+          class="project-frame"
+          src="portrait.html"
+          title="P5js Portrait"
+          scrolling="no"
+        ></iframe>
+      </div>
+
+      <!-- Section 2: Second iframe -->
+     <iframe
+        class="project-frame"
+        src="webcam.html"
+        title="ASCII Webcam"
+        scrolling="no"
+        style="height: 70vh;"
+        ></iframe>
+
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 5 thumb" />
+      </div>
+    </footer>
+
+    <script>
+      window.SECTIONS = [
+        {
+          id: 'section-1',
+          title: 'P5js Portrait',
+          desc: 'Hi, this is me in P5js, but somehow I am bold :( Pls give me some hair and make me look better :D (P.S. Each click gives me a new hair colour!)'
+        },
+        {
+          id: 'section-2',
+          title: 'Ascii Webcam Filter',
+          desc: 'I love the Ascii aesthetic in artworks (It is quite the new trend). So now you can see yourself in live Ascii art!'
+        },
+      ];
+    </script>
+    <script src="../week.js"></script>
+
+  </body>
+</html>

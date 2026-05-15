@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Week 2: ! DOCTYPE html</title>
+        <link rel="stylesheet" href="stylesw2.css">
+    </head>
+    <body>
+        <img src="w2_icon.gif" alt="Week 2 Icon" draggable="false" onclick="location.href='index.html'">
+
+        <h1>Week 2: ! DOCTYPE html</h1>
+
+        <div>
+            <h2>Low-fidelity prototype of my final workbook landing page</h2>
+            <p>← drag the eyes left and right →</p>
+
+            <div class="prototype-wrapper">
+                <img id="eyes-layer" src="prototype_eyes.png" alt="Prototype Eyes" draggable="false">
+                <img src="prototype_face.png" alt="Prototype Face" draggable="false">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>In-class Coding Activity</h2>
+            <img src="week2_code.jpg" alt="Week 2 Code" draggable="false">
+            <p>Fun relay html exercise where each member contributes to building the code of a specific webpage!</p>
+        </div>
+
+        <script>
+            const eyes = document.getElementById('eyes-layer');
+
+            let dragging = false;
+            let startX = 0;
+            let currentX = 0;
+
+            const MAX_OFFSET = 80;
+
+            function setTransform() {
+                eyes.style.transform = `translateX(calc(-50% + ${currentX}px))`;
+            }
+
+            eyes.addEventListener('mousedown', (e) => {
+                dragging = true;
+                startX = e.clientX - currentX;
+                eyes.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!dragging) return;
+                let newX = e.clientX - startX;
+                newX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, newX));
+                currentX = newX;
+                setTransform();
+            });
+
+            document.addEventListener('mouseup', () => {
+                dragging = false;
+                eyes.style.cursor = 'grab';
+            });
+
+            eyes.addEventListener('touchstart', (e) => {
+                dragging = true;
+                startX = e.touches[0].clientX - currentX;
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!dragging) return;
+                let newX = e.touches[0].clientX - startX;
+                newX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, newX));
+                currentX = newX;
+                setTransform();
+            });
+
+            document.addEventListener('touchend', () => {
+                dragging = false;
+            });
+        </script>
+    </body>
+</html>

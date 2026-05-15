@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Gochi+Hand&display=swap');
+
+:root {
+  --cream:  #f5efe6;
+  --tan:    #d9c5a8;
+  --rust:   #b5601e;
+  --bark:   #6b3f1f;
+  --ink:    #3a2a1a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  gap: 2rem 0rem;
+  padding: 1rem 2rem 3rem;
+  overflow-x: hidden;
+  font-family: 'Gaegu', cursive;
+  color: var(--ink);
+  text-align: center;
+  background-color: var(--cream);
+}
+
+h1 {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-family: 'Gochi Hand', cursive;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: var(--bark);
+  letter-spacing: 0.04em;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  margin: 0.4rem auto 0;
+  width: 60%;
+  height: 3px;
+  background: var(--rust);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+body > p {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.3rem;
+  color: var(--bark);
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2.5rem 0.5rem;
+}
+
+body > div img {
+  width: 135px;
+  height: 135px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 2px 4px rgba(91,50,10,0.15));
+}
+
+body > div img:hover {
+  transform: scale(1.12) rotate(-3deg);
+  filter: drop-shadow(0 4px 8px rgba(91,50,10,0.28));
+}
+
+body > div img:active {
+  transform: scale(0.96) rotate(1deg);
+}
+
+body > div h2 {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 1.95rem;
+  color: var(--rust);
+  letter-spacing: 0.03em;
+}
+
+body > div p {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.575rem;
+  color: var(--bark);
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  body {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem 2rem;
+  }
+
+  body > div img {
+    width: 110px;
+    height: 110px;
+  }
+
+  body > div h2 {
+    font-size: 1.6rem;
+  }
+
+  body > div p {
+    font-size: 1.3rem;
+  }
+}

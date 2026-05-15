@@ -1,0 +1,254 @@
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FFF1EC;
+  font-family: 'Georgia', serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100vw;
+  padding-bottom: 120px;
+  /*cursor: url('cursor.png'), auto;*/
+}
+
+/* ── Scanline overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.01) 3px,
+    rgba(0,0,0,0.01) 4px
+  );
+}
+
+/* ── Fixed header ── */
+.week-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 110px;
+  z-index: 50;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #FFF1EC 80%, transparent);
+}
+
+.back-btn {
+  position: fixed;
+  top: 30px;
+  left: 28px;
+  z-index: 51;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #1F1A1A;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+  pointer-events: all;
+}
+.back-btn:hover { opacity: 1; }
+
+.week-title {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 51;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #1F1A1A;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.week-sub {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 51;
+  font-size: 0.72rem;
+  color: #1F1A1A;
+  opacity: 0.4;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  pointer-events: none;
+}
+
+/* ── Page content area ── */
+.week-content {
+  padding-top: 95px;
+  width: 62vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Each section ── */
+.week-section {
+  width: 100%;
+  padding: 48px 0;
+  border-bottom: 1px solid rgba(31,26,26,0.1);
+}
+
+.week-section:last-child {
+  border-bottom: none;
+}
+
+/* ── iframe — auto height, no scrollbar ── */
+.project-frame {
+  width: 100%;
+  height: 450px;
+  border: none;
+  outline: 1px solid rgba(31,26,26,0.35);
+  display: block;
+  background: #fff;
+  overflow: hidden;
+}
+
+.section-video {
+  width: 50% !important;
+  display: block;
+  margin: 0 auto;
+  outline: 1px solid rgba(31,26,26,0.35);
+  background: #000;
+}
+
+/* ── Text / log section ── */
+.log-heading {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #1F1A1A;
+  letter-spacing: 0.06em;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(31,26,26,0.15);
+}
+
+.log-entry {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(31,26,26,0.08);
+  align-items: baseline;
+}
+
+.log-time {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #1F1A1A;
+  opacity: 0.35;
+  font-style: italic;
+  padding-top: 2px;
+}
+
+.log-text {
+  font-size: 0.82rem;
+  color: #1F1A1A;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+/* ── Nav dots ── */
+.section-dots {
+  position: fixed;
+  right: calc(19vw - 24px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 30;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(31,26,26,0.2);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: rgba(31,26,26,0.65);
+  transform: scale(1.5);
+}
+
+/* ── Fixed footer ── */
+.week-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background-color: var(--week-colour);
+  border-top: 1px solid rgba(31,26,26,0.25);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  z-index: 20;
+}
+
+.footer-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-title {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #1F1A1A;
+  letter-spacing: 0.04em;
+  transition: opacity 0.25s;
+}
+
+.project-desc {
+  font-size: 0.72rem;
+  color: #1F1A1A;
+  opacity: 0.55;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  max-width: 540px;
+  transition: opacity 0.25s;
+}
+
+.footer-left.fading .project-title,
+.footer-left.fading .project-desc {
+  opacity: 0;
+}
+
+.footer-thumb {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  image-rendering: pixelated;
+}

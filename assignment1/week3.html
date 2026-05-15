@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Week 3: PROGRESS</title>
+        <link rel="stylesheet" href="stylesw3.css">
+    </head>
+    <body>
+        <img src="w3_icon.gif" alt="Week 3 Icon" draggable="false" onclick="location.href='index.html'">
+
+        <h1>&lt;em&gt; PROGRESS &lt;/em&gt;</h1>
+
+    
+        <div class="section-orange">
+            <h2>Workbook Progress</h2>
+            <p class="prompt">Sneakpeek of my workbook :3 <br>(Top is my landing page graphic, bottom is my current code)</p>
+            <p class="prompt">Github link for my final Workbook (BETA): <a href="https://wheatzzz.github.io/interactive/" target="_blank">Mai Workbook</a> </p>
+            <img src="a2_preview.png" alt="Workbook Progress" class="workbook-preview" draggable="false">
+            <img src="a2_code.png" alt="Workbook Code" class="workbook-preview" draggable="false">
+        </div> 
+
+        <div class="section-purple">
+            <h2>X-tra Workbook Content</h2>            
+            <h3>The Website's Narrative</h3>
+            <p class="prompt">My Workbook is an exploration of my simple yet eventful world. Join me in exploring the little snippets of my creativity</p>
+            <h3>Fonts</h3>
+              <div class="font-grid">
+                <div class="font-item f-pacifico">Mai World
+                    <div class="font-label">Pacifico</div>
+                </div>
+                <div class="font-item f-caveat">Mai World
+                    <div class="font-label">Caveat Bold Italic</div>
+                </div>
+                <div class="font-item f-righteous">Mai World
+                    <div class="font-label">Righteous</div>
+                </div>
+                <div class="font-item f-shadows">Mai World
+                    <div class="font-label">Shadows Into Light</div>
+                </div>
+                <div class="font-item f-boogaloo">Mai World
+                    <div class="font-label">Boogaloo </div>
+                </div>
+                <div class="font-item f-satisfy">Mai World
+                    <div class="font-label">Satisfy</div>
+                </div>
+                <div class="font-item f-marker">Mai World
+                    <div class="font-label">Permanent Marker</div>
+                </div>
+        </div>
+
+         <div class="section-green">
+            <h2>Effects Playground</h2>
+             <p class="prompt">Sound on please!</p>
+            <h3>Audio</h3>
+            <button class="media-btn" id="audio-btn">▶ play sound</button>
+            <audio id="my-audio">
+                <source src="mysound.mp3" type="audio/mpeg">
+            </audio>
+ 
+            <h3>Video</h3>
+            <a class="media-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">▶ watch video ↗</a>
+        </div>
+ 
+      <script>
+            const audioBtn = document.getElementById('audio-btn');
+            const audio = document.getElementById('my-audio');
+ 
+            audioBtn.addEventListener('click', () => {
+                audio.currentTime = 0;
+                audio.play();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Week 1: Hello World!</title>
+        <link rel="stylesheet" href="stylesw1.css">
+    </head>
+    <body>
+        <img src="w1_icon.gif" alt="Week 1 Icon" draggable="false" onclick="location.href='index.html'">
+
+        <h1>&lt;h1&gt; Hello World! &lt;/h1&gt;</h1>
+        
+        <div class="section">
+            <h2>A "Gesture" for Bubble Wrap to ...</h2>
+            <p class="crazy8-caption"> &lt; !-- hover to see --! &gt; </p>
+            <p>- A water container? <br> - A keyboard? <br> - A scent sender? <br> - A calendar? </p>
+            <div class="img-container">
+                <img src="bubble_wrap.jpg" alt="Bubble Wrap" draggable="false">
+                <img src="infinity_popper.jpeg" alt="Infinity Popper" draggable="false">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>WWW Case Studies</h2>
+            <a href="https://paint.toys/zen-garden/" target="_blank">Zen Garden</a>
+            <img src="zengarden.png" alt="Zen Garden" class="case-study-img" draggable="false">
+            <p>
+"Simply drag across the sand to rake patterns. 
+The rake creates parallel lines that follow your movement.
+Try creating concentric circles, parallel lines, or flowing curves. The beauty is in the process as much as the result."
+
+A digital version of raking versions in "Sand and gravel" (The sand coloured background and gravel pngs)
+You press down and drag your mouse to create patterns of your choice, as well as the ability to alter the size and the number of rake teeth at the bottom tool bar. 
+You can also save and discard your creation through the emojis on the right panel. 
+However, when interacting with the sand and gravel, there are no sound effects, which I think if they did have the addition, it will make the user experience more coherent and aid the meditative effect that Tom was looking for.
+
+This website is a part of TOMS TOYBOX, the Pain.toys created by Tim Holman</p>
+        </div>
+
+        <div class="section-crazy8">
+            <h2>Crazy 8s</h2>
+            <img src="crazy8s.png" alt="Crazy 8s" class="crazy8-thumb" id="crazy8-thumb">
+            <p class="crazy8-caption">&lt; !-- click to explore --! &gt;</p>
+             <p>Each one of the 8 wireframes were drawn in 60 seconds to help generate a varied collection of potential wireframs for my final workbook. 
+                <br> I ended up choosing the 1st iteration and created low-fidelity prototype in Week 2 </p>
+        </div>
+
+        <div id="crazy8-overlay">
+            <button id="crazy8-close">✕ close</button>
+            <img src="crazy8s.png" alt="Crazy 8s" draggable="false" id="crazy8-full">
+           
+        </div>
+
+        <script>
+            const thumb = document.getElementById('crazy8-thumb');
+            const overlay = document.getElementById('crazy8-overlay');
+            const closeBtn = document.getElementById('crazy8-close');
+
+            thumb.addEventListener('click', () => {
+                overlay.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                overlay.classList.remove('active');
+            });
+        </script>
+    </body>
+</html>

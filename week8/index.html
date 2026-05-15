@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 8 — Mai's Workbook</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #E1BEE7; }
+
+      /* ── Local video ── */
+      .section-video {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+        outline: 1px solid rgba(31,26,26,0.35);
+        background: #000;
+      }
+
+      /* ── Chindogu: image + link ── */
+      .chindogu-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .chindogu-img {
+        width: 50%;
+        display: block;
+        outline: 1px solid rgba(31,26,26,0.35);
+        object-fit: cover;
+      }
+
+      .chindogu-link {
+        font-size: 0.78rem;
+        font-style: italic;
+        letter-spacing: 0.08em;
+        color: #1F1A1A;
+        opacity: 0.55;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .chindogu-link:hover { opacity: 1; }
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 8</h1>
+    <p class="week-sub">fun fact 5: I put cereal before milk :3</p>
+
+    <div class="week-content">
+
+      <!-- Section 1: Local video -->
+      <div class="week-section" id="section-1">
+        <video
+          class="section-video"
+          src="doremi.mov"
+          muted
+          playsinline
+          loop
+          controls
+        ></video>
+      </div>
+
+    <!-- Section 2: Chindogu image + link -->
+    <div class="week-section" id="section-2">
+    <div class="chindogu-wrap">
+        <img class="chindogu-img"
+        src="hayfeverhat.avif"
+        alt="Chindogu research">
+        
+        <div class="chindogu-link">
+        <a href="https://www.weeklytimesnow.com.au/country-living/the-hay-fever-hat-came-on-to-the-scene-10-years-ago/news-story/848b22504689f43b897fc804f07f6e26"
+        target="_blank" >↗ view source</a>
+    </div>
+    </div>
+
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 8 thumb" />
+      </div>
+    </footer>
+
+    <script>
+      window.SECTIONS = [
+        {
+          id: 'section-1',
+          title: 'Do Re Mi',
+          desc: 'In this expoloration, we connected wires to a longggg leaf through the ends and middle to make a simple leafy instrument. We though that it would be so cool if we can play it like a trumbone and glide through the notes but nature restricted us.'
+        },
+        {
+          id: 'section-2',
+          title: 'Chindogu Research - Hay Fever Hat',
+          desc: 'This Chindogu is deisgned to provide relief from hay fever symptoms through a constant supply of tissue paper. It might not solve the issue from the root but a solution is a solution.'
+        },
+      ];
+
+      /* ── Autoplay video on scroll ── */
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const vid = entry.target;
+          if (entry.isIntersecting) {
+            vid.play();
+          } else {
+            vid.pause();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      document.querySelectorAll('.section-video').forEach(v => videoObserver.observe(v));
+    </script>
+    <script src="../week.js"></script>
+
+  </body>
+</html>

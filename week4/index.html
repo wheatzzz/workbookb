@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 4 — Mai's Workbook</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #C8E6C9; }
+      /* ── Log + coin split layout ── */
+.log-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── Left log col ── */
+.log-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Right coin col ── */
+.coin-col {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.coin-prompt {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #1F1A1A;
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ── Coin ── */
+.coin-wrap {
+  perspective: 600px;
+}
+
+.coin {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+}
+
+.coin-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: #1F1A1A;
+  border: 2px solid #1F1A1A;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.coin-heads {
+  background-color: #C8E6C9;
+}
+
+.coin-tails {
+  background-color: #FFF1EC;
+  transform: rotateY(180deg);
+}
+
+/* ── Flip button ── */
+.coin-btn {
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: #1F1A1A;
+  background: transparent;
+  border: 1px solid rgba(31,26,26,0.35);
+  padding: 8px 28px;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.coin-btn:hover:not(:disabled) {
+  background: rgba(31,26,26,0.06);
+}
+
+.coin-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ── Result text ── */
+.coin-result {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #1F1A1A;
+  letter-spacing: 0.06em;
+  transition: opacity 0.4s;
+}
+
+.coin-sub {
+  font-size: 0.7rem;
+  color: #1F1A1A;
+  opacity: 0.45;
+  letter-spacing: 0.08em;
+  font-style: italic;
+  text-align: center;
+  max-width: 180px;
+  line-height: 1.6;
+  transition: opacity 0.4s;
+}
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 4</h1>
+    <p class="week-sub">Fun fact 1: Cates are the best animal ever :3</p>
+
+    <div class="week-content">
+
+      <!-- Section 1: Kusama iframe -->
+      <div class="week-section" id="section-1">
+        <iframe
+          class="project-frame"
+          src="kusama.html"
+          title="Yayoi Kusama Inspired Sketch"
+          scrolling="no"
+        ></iframe>
+      </div>
+
+      <!-- Section 2: Log + Coin flip -->
+      <div class="week-section" id="section-2">
+        <div class="log-layout">
+
+          <!-- Left: time log -->
+          <div class="log-col">
+            <h2 class="log-heading">Slave to the Algorithm<br>12 Hour Log</h2>
+            <div class="log-entry">
+              <span class="log-time">9:00</span>
+              <p class="log-text">Eat breakfast? -> Heads <br>(I just ate a fried egg).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">10:00</span>
+              <p class="log-text">Go on my phone while on the train to Uni? -> Tails <br>(I just stared out the window, the weather was quite nice).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">11:00</span>
+              <p class="log-text">It's nearly class time, should I get a coffee? -> Tails 
+                <br>(I guess I just saved $7).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">12:00</span>
+              <p class="log-text">I am still in class... <br>
+                I am a good student so i got a free pass this hour</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">13:00</span>
+              <p class="log-text">So hungryyyyyy, should I eat on campus? -> Heads
+                <br>(I got a bowl of lanzhou noodle! Yummy Yummy).</p>
+              </p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">14:00</span>
+              <p class="log-text">My friend invited to go on a small walk but I am studying, should I still go? -> Tails
+                <br>(I decided to stay and study, but I feel a bit guilty).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">15:00</span>
+              <p class="log-text">I have a group project meeting soon, is it finally time to get a coffee? -> Heads.
+                <br> (The algorithm was on my side! I got a simple latte and it was delicious as always.)
+              </p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">16:00</span>
+              <p class="log-text">Time to start the watching the lecture. Should I sit in the front row? -> Tails
+                <br>(Phew, sitting close to the lecturer sometimes scares me).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">17:00</span>
+              <p class="log-text">It's break time during the lecture. Bathroom time? -> Heads
+                <br>(I did't really need to go but took some fresh air on the way there).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">18:00</span>
+              <p class="log-text">Kinda hungry again... should I buy something in the city? -> Heads
+                <br>(I decided to grab a matcha sundae as a sweet treat for my long day at Uni).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">19:00</span>
+              <p class="log-text">Still on the way home and feeling tired. Should I take a break by playing a round of TFT? -> Tails
+                <br>(I guess I am not playing until later :/ so I just listened to some music).</p>
+            </div>
+            <div class="log-entry">
+              <span class="log-time">20:00</span>
+              <p class="log-text">Finally home from a long day. Should I celebrate with a movie night? -> Heads
+                <br>(I decided to watch my some youtube and unwind).</p>
+            </div>
+          </div>
+
+          <!-- Right: coin flip -->
+          <div class="coin-col">
+            <p class="coin-prompt">will you be a<br>slave to the algorithm?</p>
+
+            <div class="coin-wrap">
+              <div class="coin" id="coin">
+                <div class="coin-face coin-heads">yes</div>
+                <div class="coin-face coin-tails">no</div>
+              </div>
+            </div>
+
+            <button class="coin-btn" id="coin-btn">flip</button>
+
+            <p class="coin-result" id="coin-result">&nbsp;</p>
+
+            <p class="coin-sub" id="coin-sub">&nbsp;</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 4 thumb" />
+      </div>
+    </footer>
+
+    <script>
+      window.SECTIONS = [
+        {
+          id: 'section-1',
+          title: 'Yayoi Kusama Inspired Sketch',
+          desc: 'An interactive exploration inspired by Yayoi Kusama\'s infinite dot worlds with a timed and black and white twist.'
+        },
+        {
+          id: 'section-2',
+          title: 'Slave to the Algorithm',
+          desc: 'A 12-hour log documentation of how I became a slave to the algorithm, guided by the fate of a coin flip. Heads = yes, Tails = no.'
+        },
+      ];
+    </script>
+    <script src="../week.js"></script>
+    <script>
+      /* ── Coin flip ── */
+      const coin      = document.getElementById('coin');
+      const btn       = document.getElementById('coin-btn');
+      const resultEl  = document.getElementById('coin-result');
+      const subEl     = document.getElementById('coin-sub');
+
+      const YES_LINES = [
+        'stop what you are doing and go outside for some fresh air.',
+        'now doom scroll without intention, its a well deserved rest (or not).',
+        'be ready to be controlled by the algorithm.',
+        'go eat an apple to keep the doctors away.',
+        'let the algorithm choose your next 12 hours.',
+      ];
+
+      const NO_LINES = [
+        'flip again.',
+        'flip again, flip again, flip again.',
+        'flip again, the algorithm is waiting.',
+        'the coin says yes, you are hallucinating iF you see a no.',
+        'no means yes, yes means yes.',
+      ];
+
+      let spinning = false;
+
+      btn.addEventListener('click', () => {
+        if (spinning) return;
+        spinning = true;
+
+        btn.disabled = true;
+        resultEl.style.opacity = 0;
+        subEl.style.opacity = 0;
+
+        const isHeads = Math.random() < 0.5;
+        // heads = yes, tails = no
+        // spin: multiple full rotations + land on correct face
+        const baseSpins = 6; // full 360s
+        const landAngle = isHeads ? 0 : 180; // 0 = heads up, 180 = tails up
+        const totalDeg  = baseSpins * 360 + landAngle;
+
+        coin.style.transition = 'none';
+        coin.style.transform  = 'rotateY(0deg)';
+
+        // force reflow then animate
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            coin.style.transition = 'transform 1.8s cubic-bezier(0.23, 1, 0.32, 1)';
+            coin.style.transform  = `rotateY(${totalDeg}deg)`;
+          });
+        });
+
+        setTimeout(() => {
+          const lines = isHeads ? YES_LINES : NO_LINES;
+          const line  = lines[Math.floor(Math.random() * lines.length)];
+
+          resultEl.textContent = isHeads ? 'yes.' : 'no.';
+          subEl.textContent    = line;
+
+          resultEl.style.opacity = 1;
+          subEl.style.opacity    = 1;
+
+          btn.disabled = false;
+          spinning = false;
+
+          // reset rotation silently so it can spin again
+          setTimeout(() => {
+            coin.style.transition = 'none';
+            coin.style.transform  = `rotateY(${landAngle}deg)`;
+          }, 300);
+
+        }, 1900);
+      });
+    </script>
+
+  </body>
+</html>

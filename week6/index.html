@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Week 6 — Mai's Workbook</title>
+    <link rel="stylesheet" href="../week.css" />
+    <style>
+      :root { --week-colour: #FFE0B2; }
+
+      /* ── Section 1 & 2: full image ── */
+      .section-img {
+        width: 100%;
+        display: block;
+        outline: 1px solid rgba(31,26,26,0.35);
+        object-fit: cover;
+      }
+
+      /* ── Section 3: YouTube embed ── */
+      .yt-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        outline: 1px solid rgba(31,26,26,0.35);
+        background: #000;
+        overflow: hidden;
+      }
+
+      .yt-wrap iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .yt-fallback {
+        display: block;
+        margin-top: 10px;
+        font-size: 0.75rem;
+        font-style: italic;
+        color: #1F1A1A;
+        opacity: 0.5;
+        letter-spacing: 0.04em;
+        text-align: center;
+        text-decoration: none;
+      }
+      .yt-fallback:hover { opacity: 1; }
+    </style>
+  </head>
+  <body>
+
+    <div class="week-header"></div>
+    <a href="../library.html" class="back-btn">← library</a>
+    <h1 class="week-title">Week 6</h1>
+    <p class="week-sub">fun fact 3: I loveeee food, but I tend to order more than I can eat</p>
+
+    <div class="week-content">
+
+      <!-- Section 1: Image -->
+      <div class="week-section" id="section-1">
+        <img
+          class="section-img"
+          src="circling.jpg"
+          alt="Arduino circling activity"
+        />
+      </div>
+
+      <!-- Section 2: Second image -->
+      <div class="week-section" id="section-2">
+        <img
+          class="section-img"
+          src="lights.jpg"
+          alt="Arduino light-up activity"
+        />
+      </div>
+
+      <!-- Section 3: YouTube autoplay on scroll -->
+      <div class="week-section" id="section-3">
+        <div class="yt-wrap" id="yt-wrap">
+          <iframe
+            id="yt-frame"
+            title="Hunt n' Gather"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <a href="https://www.youtube.com/watch?v=C7D8cirnfoM" target="_blank" class="yt-fallback">
+          ↗ watch on youtube if video doesn't load
+        </a>
+      </div>
+
+    </div>
+
+    <footer class="week-footer">
+      <div class="footer-inner">
+        <div class="footer-left" id="footer-left">
+          <p class="project-title" id="section-title"></p>
+          <p class="project-desc" id="section-desc"></p>
+        </div>
+        <img class="footer-thumb" src="thumb.gif" alt="Week 6 thumb" />
+      </div>
+    </footer>
+
+    <script>
+      window.SECTIONS = [
+        {
+          id: 'section-1',
+          title: 'Arduino Circling Activity',
+          desc: 'This was my first time handling an arduino kit and went into sectioning parts of the kit in ways that felt right. I would say Jinwen (Wendy), my partner, and I did a pretty good job considering we went in blind.'
+        },
+        {
+          id: 'section-2',
+          title: 'Arduino Light-Up Activity',
+          desc: 'Right after the previous activity, Wendy and I went into doing the wiring to make a light light up. We followed the instructions, ran the code and voila! Physical computing magic!'
+        },
+        {
+          id: 'section-3',
+          title: 'Hunt n\' Gather',
+          desc: 'A physical computing project by HTX studio that replicates a CGI/editing effect in real life. Their persistence through iterations and continuous trial and error to achieve the final effect really showcased the art of physical computing.'
+        },
+      ];
+
+      /* ── YouTube autoplay on scroll ── */
+      const ytFrame = document.getElementById('yt-frame');
+      let ytLoaded = false;
+
+      const ytObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !ytLoaded) {
+            ytFrame.src = 'https://www.youtube.com/embed/C7D8cirnfoM?autoplay=1&mute=1&rel=0&modestbranding=1';
+            ytLoaded = true;
+            ytObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      ytObserver.observe(document.getElementById('yt-wrap'));
+    </script>
+    <script src="../week.js"></script>
+
+  </body>
+</html>
