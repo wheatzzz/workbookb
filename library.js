@@ -8,6 +8,7 @@ const BOOKS = [
   { id: 'book-week8', color: '#E1BEE7' },
   { id: 'book-week9', color: '#B2EBF2' },
   { id: 'book-a1', color: '#f5efe6' },
+  { id: 'book-research', href: 'https://wheatzzz.github.io/ResearchJournal/' },
 ];
 
 const BOOK_W = 200;
