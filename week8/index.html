@@ -17,23 +17,46 @@
         background: #000;
       }
 
-      /* ── Chindogu: image + link ── */
-      .chindogu-wrap {
+      /* ── Chindogu: two images side by side ── */
+      .chindogu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .chindogu-item {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        gap: 14px;
       }
 
       .chindogu-img {
-        width: 50%;
+        width: 100%;
         display: block;
         outline: 1px solid rgba(31,26,26,0.35);
-        object-fit: cover;
+        object-fit: contain;
+        height: 400px;
       }
 
-      .chindogu-link {
-        font-size: 0.78rem;
+      .chindogu-caption-title {
+        font-size: 0.85rem;
+        font-style: italic;
+        font-weight: 400;
+        color: #1F1A1A;
+        letter-spacing: 0.04em;
+      }
+
+      .chindogu-caption-desc {
+        font-size: 0.75rem;
+        color: #1F1A1A;
+        opacity: 0.65;
+        line-height: 1.7;
+        letter-spacing: 0.02em;
+      }
+
+      .chindogu-link, .chindogu-link:visited {
+        font-size: 0.75rem;
         font-style: italic;
         letter-spacing: 0.08em;
         color: #1F1A1A;
@@ -65,18 +88,31 @@
         ></video>
       </div>
 
-    <!-- Section 2: Chindogu image + link -->
-    <div class="week-section" id="section-2">
-    <div class="chindogu-wrap">
-        <img class="chindogu-img"
-        src="hayfeverhat.avif"
-        alt="Chindogu research">
-        
-        <div class="chindogu-link">
-        <a href="https://www.weeklytimesnow.com.au/country-living/the-hay-fever-hat-came-on-to-the-scene-10-years-ago/news-story/848b22504689f43b897fc804f07f6e26"
-        target="_blank" >↗ view source</a>
-    </div>
-    </div>
+      <!-- Section 2: Chindogu two images side by side -->
+      <div class="week-section" id="section-2">
+        <div class="chindogu-grid">
+
+          <!-- Left: Hay Fever Hat -->
+          <div class="chindogu-item">
+            <img class="chindogu-img" src="hayfeverhat.avif" alt="Hay Fever Hat Chindogu" />
+            <p class="chindogu-caption-title">Chindogu Research — Hay Fever Hat</p>
+            <p class="chindogu-caption-desc">This Chindogu is designed to provide relief from hay fever symptoms through a constant supply of tissue paper. It might not solve the issue from the root but a solution is a solution.</p>
+            
+              <a class="chindogu-link"
+              href="https://www.weeklytimesnow.com.au/country-living/the-hay-fever-hat-came-on-to-the-scene-10-years-ago/news-story/848b22504689f43b897fc804f07f6e26"
+              target="_blank"
+            >↗ view source</a>
+          </div>
+
+          <!-- Right: My Chindogu -->
+          <div class="chindogu-item">
+            <img class="chindogu-img" src="mychindogu.png" alt="My Chindogu" />
+            <p class="chindogu-caption-title">My Chindogu</p>
+            <p class="chindogu-caption-desc">My Chindogu is called the Anti-Alone-Sock-Detector that minimises the changes of only having one sock with its missing pair (Because that is always a pain). Hence, by installing two chips that will beep as soon as their dectected distance is > 10M, it will BEEP like crazy. Its only enemy may be the washing machine...</p>
+          </div>
+
+        </div>
+      </div>
 
     </div>
 
@@ -95,12 +131,12 @@
         {
           id: 'section-1',
           title: 'Do Re Mi',
-          desc: 'In this expoloration, we connected wires to a longggg leaf through the ends and middle to make a simple leafy instrument. We though that it would be so cool if we can play it like a trumbone and glide through the notes but nature restricted us.'
+          desc: 'In this exploration, we connected wires to a longggg leaf through the ends and middle to make a simple leafy instrument. We thought that it would be so cool if we can play it like a trombone and glide through the notes but nature restricted us.'
         },
         {
           id: 'section-2',
-          title: 'Chindogu Research - Hay Fever Hat',
-          desc: 'This Chindogu is deisgned to provide relief from hay fever symptoms through a constant supply of tissue paper. It might not solve the issue from the root but a solution is a solution.'
+          title: 'Chindogu Exploration',
+          desc: 'An exploration of Chindogu — the Japanese art of unuseless inventions. A researched example alongside my own Chindogu creation.'
         },
       ];
 
