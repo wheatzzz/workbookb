@@ -70,7 +70,7 @@ function draw() {
 
   noStroke();
   for (let s of stamps) {
-    fill(s.col); // fully opaque
+    fill(s.col); 
     ellipse(s.x, s.y, s.size);
   }
 

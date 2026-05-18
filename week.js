@@ -7,7 +7,7 @@ const sections   = window.SECTIONS || [];
 
 let currentIndex = 0;
 
-/* ── Update footer text ── */
+/* ── Claude: Update footer text ── */
 function updateFooter(index) {
   if (index === currentIndex && titleEl.textContent === sections[index]?.title) return;
   currentIndex = index;
@@ -20,7 +20,7 @@ function updateFooter(index) {
   }, 250);
 }
 
-/* ── IntersectionObserver watches each section ── */
+/* ── Claude: IntersectionObserver watches each section ── */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -57,7 +57,6 @@ document.querySelectorAll('.project-frame').forEach(frame => {
 });
 
 document.querySelectorAll('.project-frame').forEach(frame => {
-  // skip if a manual height is already set inline
   if (frame.style.height) return;
 
   frame.addEventListener('load', () => {

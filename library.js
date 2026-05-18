@@ -12,8 +12,8 @@ const BOOKS = [
 ];
 
 const BOOK_W = 200;
-const BOOK_H = 200; // includes label area
-const SPEED_RANGE = [0.9, 1.8]; // px per frame
+const BOOK_H = 200; 
+const SPEED_RANGE = [0.9, 1.8]; 
 
 const state = [];
 
@@ -33,7 +33,7 @@ function initBooks() {
     const el = document.getElementById(cfg.id);
     if (!el) return;
 
-    // Inject fallback block if img src missing / broken
+    //Claude: Inject fallback block if img src missing / broken
     const img = el.querySelector('img');
     if (img) {
       img.addEventListener('error', () => {
@@ -49,17 +49,17 @@ function initBooks() {
       });
     }
 
-    // Random start position (no overlap attempt — simple scatter)
+    
     const x = margin + rand(0, usableW);
     const y = margin + rand(0, usableH);
 
-    // Random velocity
+    
     const speed = rand(...SPEED_RANGE);
     const angle = rand(0, Math.PI * 2);
     const vx = Math.cos(angle) * speed;
     const vy = Math.sin(angle) * speed;
 
-    // Place immediately
+    
     el.style.left = '0px';
     el.style.top  = '0px';
     el.style.transform = `translate(${x}px, ${y}px)`;
@@ -82,8 +82,8 @@ function bounce() {
     s.x += s.vx;
     s.y += s.vy;
 
-    // Bounce off walls
-    const TOP_BOUND = 90; // clears the header text
+   
+    const TOP_BOUND = 90;
     if (s.x < 0) { s.x = 0; s.vx = Math.abs(s.vx); }
     if (s.y < TOP_BOUND) { s.y = TOP_BOUND; s.vy = Math.abs(s.vy); }
     if (s.x > W - BOOK_W) { s.x = W - BOOK_W; s.vx = -Math.abs(s.vx); }
@@ -95,7 +95,7 @@ function bounce() {
   requestAnimationFrame(bounce);
 }
 
-// Pause bounce when hovering so user can click easily
+// Claude: Pause bounce when hovering so user can click easily
 document.querySelectorAll('.book').forEach(el => {
   el.addEventListener('mouseenter', () => {
     const s = state.find(s => s.el === el);

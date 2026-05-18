@@ -12,10 +12,9 @@ body {
   overflow-y: scroll;
   width: 100vw;
   padding-bottom: 120px;
-  /*cursor: url('cursor.png'), auto;*/
 }
 
-/* ── Scanline overlay ── */
+
 body::after {
   content: '';
   position: fixed;
@@ -31,7 +30,7 @@ body::after {
   );
 }
 
-/* ── Fixed header ── */
+
 .week-header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -109,7 +108,7 @@ body::after {
   border-bottom: none;
 }
 
-/* ── iframe — auto height, no scrollbar ── */
+/* ── Claude: iframe — auto height, no scrollbar ── */
 .project-frame {
   width: 100%;
   height: 450px;
@@ -128,7 +127,7 @@ body::after {
   background: #000;
 }
 
-/* ── Text / log section ── */
+
 .log-heading {
   font-size: 1.1rem;
   font-style: italic;
@@ -166,33 +165,8 @@ body::after {
   opacity: 0.8;
 }
 
-/* ── Nav dots ── */
-.section-dots {
-  position: fixed;
-  right: calc(19vw - 24px);
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 30;
-}
 
-.dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(31,26,26,0.2);
-  transition: background 0.3s, transform 0.3s;
-  cursor: pointer;
-}
 
-.dot.active {
-  background: rgba(31,26,26,0.65);
-  transform: scale(1.5);
-}
-
-/* ── Fixed footer ── */
 .week-footer {
   position: fixed;
   bottom: 0;
